@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<div th:replace="~{fragment::meta}"></div>
+	<div th:replace="~{fragment::styles}"></div>
+	<title>TOP PAGE</title>
+</head>	
+<body>
+	<div th:replace="~{fragment::header}"></div> <!--ヘッダー-->
+
+	<main>
+		<div class="container pt-4 pb-4 nagoyameshi-message">
+			<div th:if="${param.loggedIn}" class="alert alert-info">ログインしました</div>
+			<div th:if="${param.loggedOut}" class="alert alert-info">ログアウトしました</div>
+		</div>
+		
+	</main>
+	
+	<!--ここは確認用！！！！！！！！！！！！！！！！！！！！！！！！！！-->
+	<div>
+	    <p>現在のユーザー: <span sec:authentication="name"></span></p>
+	    <p>認証済みか: <span sec:authorize="isAuthenticated() ? 'はい' : 'いいえ'"></span></p>
+		<a href="/session" class="btn btn-primary">セッション情報を確認する</a>
+	</div>
+	<!--ここは確認用！！！！！！！！！！！！！！！！！！！！！！！！！！-->	
+	
+		<div th:replace="~{fragment::footer}"></div> <!--フッター-->
+	<div th:replace="~{fragment::scripts}"></div>
+</body>
+
+</html>
